@@ -8,22 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		1011CB031E23BC4B00316511 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1011CB021E23BC4B00316511 /* AppDelegate.swift */; };
-		1011CB051E23BC4B00316511 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1011CB041E23BC4B00316511 /* ViewController.swift */; };
+		1011CB051E23BC4B00316511 /* ContactFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1011CB041E23BC4B00316511 /* ContactFormViewController.swift */; };
 		1011CB081E23BC4B00316511 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1011CB061E23BC4B00316511 /* Main.storyboard */; };
 		1011CB0B1E23BC4B00316511 /* ContatosIP67.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1011CB091E23BC4B00316511 /* ContatosIP67.xcdatamodeld */; };
 		1011CB0D1E23BC4B00316511 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1011CB0C1E23BC4B00316511 /* Assets.xcassets */; };
 		1011CB101E23BC4B00316511 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1011CB0E1E23BC4B00316511 /* LaunchScreen.storyboard */; };
+		1075425D1E23F63E00CD03B6 /* ContactDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1075425C1E23F63E00CD03B6 /* ContactDao.swift */; };
+		10773F981E240DED0027E701 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10773F971E240DED0027E701 /* ContactTableViewController.swift */; };
+		10C994CC1E23D6A4006A15B2 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C994CB1E23D6A4006A15B2 /* Contact.m */; };
+		10D61AE91E2549A500B30E2A /* ContactTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D61AE81E2549A500B30E2A /* ContactTableViewControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1011CAFF1E23BC4B00316511 /* ContatosIP67.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContatosIP67.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1011CB021E23BC4B00316511 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1011CB041E23BC4B00316511 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1011CB041E23BC4B00316511 /* ContactFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFormViewController.swift; sourceTree = "<group>"; };
 		1011CB071E23BC4B00316511 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1011CB0A1E23BC4B00316511 /* ContatosIP67.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ContatosIP67.xcdatamodel; sourceTree = "<group>"; };
 		1011CB0C1E23BC4B00316511 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1011CB0F1E23BC4B00316511 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1011CB111E23BC4B00316511 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1075425C1E23F63E00CD03B6 /* ContactDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDao.swift; sourceTree = "<group>"; };
+		10773F971E240DED0027E701 /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
+		10C994CA1E23D6A4006A15B2 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		10C994CB1E23D6A4006A15B2 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		10C994D01E23DE18006A15B2 /* ContatosIP67-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ContatosIP67-Bridging-Header.h"; sourceTree = "<group>"; };
+		10D61AE81E2549A500B30E2A /* ContactTableViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,12 +67,18 @@
 			isa = PBXGroup;
 			children = (
 				1011CB021E23BC4B00316511 /* AppDelegate.swift */,
-				1011CB041E23BC4B00316511 /* ViewController.swift */,
+				1011CB041E23BC4B00316511 /* ContactFormViewController.swift */,
 				1011CB061E23BC4B00316511 /* Main.storyboard */,
 				1011CB0C1E23BC4B00316511 /* Assets.xcassets */,
 				1011CB0E1E23BC4B00316511 /* LaunchScreen.storyboard */,
 				1011CB111E23BC4B00316511 /* Info.plist */,
 				1011CB091E23BC4B00316511 /* ContatosIP67.xcdatamodeld */,
+				10C994CA1E23D6A4006A15B2 /* Contact.h */,
+				10C994CB1E23D6A4006A15B2 /* Contact.m */,
+				10C994D01E23DE18006A15B2 /* ContatosIP67-Bridging-Header.h */,
+				1075425C1E23F63E00CD03B6 /* ContactDao.swift */,
+				10773F971E240DED0027E701 /* ContactTableViewController.swift */,
+				10D61AE81E2549A500B30E2A /* ContactTableViewControllerDelegate.swift */,
 			);
 			path = ContatosIP67;
 			sourceTree = "<group>";
@@ -99,6 +115,7 @@
 				TargetAttributes = {
 					1011CAFE1E23BC4B00316511 = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -139,9 +156,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1011CB051E23BC4B00316511 /* ViewController.swift in Sources */,
+				10C994CC1E23D6A4006A15B2 /* Contact.m in Sources */,
+				1011CB051E23BC4B00316511 /* ContactFormViewController.swift in Sources */,
+				10773F981E240DED0027E701 /* ContactTableViewController.swift in Sources */,
 				1011CB0B1E23BC4B00316511 /* ContatosIP67.xcdatamodeld in Sources */,
+				10D61AE91E2549A500B30E2A /* ContactTableViewControllerDelegate.swift in Sources */,
 				1011CB031E23BC4B00316511 /* AppDelegate.swift in Sources */,
+				1075425D1E23F63E00CD03B6 /* ContactDao.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,11 +283,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ContatosIP67/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.alura.ContatosIP67;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ContatosIP67/ContatosIP67-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -274,11 +299,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ContatosIP67/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.alura.ContatosIP67;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ContatosIP67/ContatosIP67-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -301,6 +329,7 @@
 				1011CB161E23BC4B00316511 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
