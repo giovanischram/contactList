@@ -6,8 +6,6 @@
 //  Copyright © 2017 ios6584. All rights reserved.
 //
 
-import UIKit
-
 class ContactDao: NSObject {
 
     private static var instance: ContactDao!

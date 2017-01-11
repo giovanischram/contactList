@@ -13,6 +13,7 @@
 		1011CB0B1E23BC4B00316511 /* ContatosIP67.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1011CB091E23BC4B00316511 /* ContatosIP67.xcdatamodeld */; };
 		1011CB0D1E23BC4B00316511 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1011CB0C1E23BC4B00316511 /* Assets.xcassets */; };
 		1011CB101E23BC4B00316511 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1011CB0E1E23BC4B00316511 /* LaunchScreen.storyboard */; };
+		106768FA1E264CAA002FDC9C /* OptionsManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106768F91E264CAA002FDC9C /* OptionsManagement.swift */; };
 		1075425D1E23F63E00CD03B6 /* ContactDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1075425C1E23F63E00CD03B6 /* ContactDao.swift */; };
 		10773F981E240DED0027E701 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10773F971E240DED0027E701 /* ContactTableViewController.swift */; };
 		10C994CC1E23D6A4006A15B2 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C994CB1E23D6A4006A15B2 /* Contact.m */; };
@@ -28,6 +29,7 @@
 		1011CB0C1E23BC4B00316511 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1011CB0F1E23BC4B00316511 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1011CB111E23BC4B00316511 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		106768F91E264CAA002FDC9C /* OptionsManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsManagement.swift; sourceTree = "<group>"; };
 		1075425C1E23F63E00CD03B6 /* ContactDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDao.swift; sourceTree = "<group>"; };
 		10773F971E240DED0027E701 /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
 		10C994CA1E23D6A4006A15B2 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				1075425C1E23F63E00CD03B6 /* ContactDao.swift */,
 				10773F971E240DED0027E701 /* ContactTableViewController.swift */,
 				10D61AE81E2549A500B30E2A /* ContactTableViewControllerDelegate.swift */,
+				106768F91E264CAA002FDC9C /* OptionsManagement.swift */,
 			);
 			path = ContatosIP67;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 				10C994CC1E23D6A4006A15B2 /* Contact.m in Sources */,
 				1011CB051E23BC4B00316511 /* ContactFormViewController.swift in Sources */,
 				10773F981E240DED0027E701 /* ContactTableViewController.swift in Sources */,
+				106768FA1E264CAA002FDC9C /* OptionsManagement.swift in Sources */,
 				1011CB0B1E23BC4B00316511 /* ContatosIP67.xcdatamodeld in Sources */,
 				10D61AE91E2549A500B30E2A /* ContactTableViewControllerDelegate.swift in Sources */,
 				1011CB031E23BC4B00316511 /* AppDelegate.swift in Sources */,

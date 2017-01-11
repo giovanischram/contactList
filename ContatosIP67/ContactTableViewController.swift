@@ -26,6 +26,22 @@ class ContactTableViewController: UITableViewController, ContactTableViewControl
         self.contactDao = ContactDao.currentInstance()
     }
     
+    override func viewDidLoad() {
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(showOptions(gesture:)))
+        self.tableView.addGestureRecognizer(gesture)
+        
+    }
+    
+    func showOptions(gesture: UIGestureRecognizer) {
+        if (gesture.state == .began) {
+            let point = gesture.location(in: self.tableView)
+            let indexPath = self.tableView.indexPathForRow(at: point)
+            let contact = contactDao.findByIndex(index: (indexPath?.row)!)
+            let optionsManagement = OptionsManagement(contact: contact)
+            optionsManagement.show(controller: self)
+        }
+    }
+    
     //Quantidade de colunas
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
