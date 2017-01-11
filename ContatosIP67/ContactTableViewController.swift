@@ -55,8 +55,17 @@ class ContactTableViewController: UITableViewController, ContactTableViewControl
     // Conteúdo de cada uma das linhas
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let contact = contactDao.findByIndex(index: indexPath.row)
-        let cell:UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: ContactTableViewController.CELL_IDENTIFIER)
-        cell?.textLabel?.text = contact.name
+        let cell:ContactTableViewCell? = tableView.dequeueReusableCell(withIdentifier: ContactTableViewController.CELL_IDENTIFIER) as! ContactTableViewCell?
+        cell?.nameLabel.text = contact.name
+        
+        if (contact.photo == nil) {
+            let url = URL(string: "http://store.mdcgate.com/market/assets/image/icon_user_default.png")
+            let data:Data = try! Data(contentsOf: url!)
+            cell?.photoImageView.image = UIImage(data: data)
+        } else {
+            cell?.photoImageView.image = contact.photo
+        }
+        
         return cell!
     }
     

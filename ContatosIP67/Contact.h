@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface Contact : NSObject
 
@@ -14,9 +15,11 @@
 @property NSString *telephone;
 @property NSString *address;
 @property NSString *site;
+@property UIImage *photo;
 
 -(instancetype) initWithName: (NSString*) name
                 andTelephone: (NSString*) telephone
                 andAddress: (NSString*) address
-                andSite: (NSString*) site;
+                andSite: (NSString*) site
+                andPhoto: (UIImage*) photo;
 @end

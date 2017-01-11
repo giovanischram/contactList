@@ -8,12 +8,13 @@
 
 import UIKit
 
-class ContactFormViewController: UIViewController {
+class ContactFormViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var telephoneTextField: UITextField!
     @IBOutlet var addressTextField: UITextField!
     @IBOutlet var siteTextField: UITextField!
+    @IBOutlet weak var photoImageView: UIImageView!
     
     private var isNewContact: Bool = true
     private var contact: Contact?
@@ -43,6 +44,50 @@ class ContactFormViewController: UIViewController {
             telephoneTextField.text = contact!.telephone
             addressTextField.text = contact!.address
             siteTextField.text = contact!.site
+            photoImageView.image = contact!.photo
+        } else {
+            let url = URL(string: "http://store.mdcgate.com/market/assets/image/icon_user_default.png")
+            let data:Data = try! Data(contentsOf: url!)
+            photoImageView.image = UIImage(data: data)
+        }
+        
+        self.photoImageView.layer.cornerRadius = 60.0
+        self.photoImageView.clipsToBounds = true
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(showLibrary(gesture:)))
+        self.photoImageView.addGestureRecognizer(gesture)
+    }
+    
+    func showLibrary(gesture: UIGestureRecognizer) {
+        let imageController = UIImagePickerController()
+        imageController.allowsEditing = true
+        imageController.delegate = self
+        
+        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)) {
+            print("Has comera")
+            let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+            
+            let cameraAction = UIAlertAction(title: "Camera", style: .default) { (UIAlertAction) in
+                imageController.sourceType = .camera
+                self.present(imageController, animated: true, completion: nil)
+            }
+            
+            let libraryAction = UIAlertAction(title: "Galeria", style: .default) { (UIAlertAction) in
+                imageController.sourceType = .photoLibrary
+                self.present(imageController, animated: true, completion: nil)
+            }
+            
+            let alert = UIAlertController(title: "Selecione", message: nil, preferredStyle: .actionSheet)
+            alert.addAction(cancelAction)
+            alert.addAction(cameraAction)
+            alert.addAction(libraryAction)
+            
+            self.present(alert, animated: true, completion: nil)
+            
+        } else {
+            print("Do not have comera")
+            imageController.sourceType = .photoLibrary
+            self.present(imageController, animated: true, completion: nil)
         }
     }
 
@@ -69,7 +114,7 @@ class ContactFormViewController: UIViewController {
     }
     
     func createContact() -> Contact {
-        return Contact(name: nameTextField.text!, andTelephone: telephoneTextField.text!, andAddress: addressTextField.text!, andSite: siteTextField.text!)
+        return Contact(name: nameTextField.text!, andTelephone: telephoneTextField.text!, andAddress: addressTextField.text!, andSite: siteTextField.text!, andPhoto: photoImageView.image!)
     }
     
     func saveContact(contact: Contact) {
@@ -82,6 +127,15 @@ class ContactFormViewController: UIViewController {
         contact!.telephone = telephoneTextField.text!
         contact!.address = addressTextField.text!
         contact!.site = siteTextField.text!
+        contact!.photo = photoImageView.image!
         delegate?.setAsUpdated(contact: contact!)
+    }
+    
+    // UIImagePickerControllerDelegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerEditedImage] as! UIImage
+        photoImageView.image = image
+        photoImageView.backgroundColor = UIColor.clear
+        picker.dismiss(animated: true, completion: nil)
     }
 }

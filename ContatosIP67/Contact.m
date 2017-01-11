@@ -18,13 +18,15 @@ NSString *site;
 -(instancetype) initWithName: (NSString*) name
            andTelephone: (NSString*) telephone
              andAddress: (NSString*) address
-                andSite: (NSString*) site {
+                andSite: (NSString*) site
+               andPhoto: (UIImage*) photo {
     
     Contact *contact = [Contact new];
     contact.name = name;
     contact.telephone = telephone;
     contact.address = address;
     contact.site = site;
+    contact.photo = photo;
     return contact;
 }
 
