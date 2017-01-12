@@ -8,18 +8,24 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface Contact : NSObject
+@interface Contact : NSObject<MKAnnotation>
 
 @property NSString *name;
 @property NSString *telephone;
 @property NSString *address;
 @property NSString *site;
 @property UIImage *photo;
+@property NSNumber *latitude;
+@property NSNumber *longitude;
 
 -(instancetype) initWithName: (NSString*) name
                 andTelephone: (NSString*) telephone
                 andAddress: (NSString*) address
                 andSite: (NSString*) site
-                andPhoto: (UIImage*) photo;
+                andPhoto: (UIImage*) photo
+                andLatitude: (NSNumber*) latitude
+                andLongitude: (NSNumber*) longitude;
+
 @end

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ContactFormViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -14,7 +15,11 @@ class ContactFormViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet var telephoneTextField: UITextField!
     @IBOutlet var addressTextField: UITextField!
     @IBOutlet var siteTextField: UITextField!
-    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet var photoImageView: UIImageView!
+    @IBOutlet var latitudeTextField: UITextField!
+    @IBOutlet var longitudeTextField: UITextField!
+    @IBOutlet var geoLocationButton: UIButton!
+    @IBOutlet weak var geoLocationActivityIndicator: UIActivityIndicatorView!
     
     private var isNewContact: Bool = true
     private var contact: Contact?
@@ -45,6 +50,17 @@ class ContactFormViewController: UIViewController, UIImagePickerControllerDelega
             addressTextField.text = contact!.address
             siteTextField.text = contact!.site
             photoImageView.image = contact!.photo
+            
+            
+            if let latitude = contact!.latitude {
+                latitudeTextField.text = formatNumber(number: latitude)
+            }
+            
+            if let longitude = contact!.longitude {
+                longitudeTextField.text = formatNumber(number: longitude)
+            }
+            
+            
         } else {
             let url = URL(string: "http://store.mdcgate.com/market/assets/image/icon_user_default.png")
             let data:Data = try! Data(contentsOf: url!)
@@ -104,17 +120,42 @@ class ContactFormViewController: UIViewController, UIImagePickerControllerDelega
             editContact()
         }
         _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func getGeolocation(_ sender: AnyObject) {
+        print("Searching coordinates...")
+        geoLocationButton.isHidden = true
+        geoLocationActivityIndicator.startAnimating()
         
-//        let contacts = contactDao.findAll()
-//        print("Contatos salvos: \(contacts.count)")
-//        for contact in contacts {
-//            print(contact)
-//        }
-        
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(addressTextField.text!) { (result, error) in
+            if (error == nil && result!.count > 0) {
+                let placeMark = result?[0]
+                let coordinates = placeMark?.location?.coordinate
+                self.latitudeTextField.text = coordinates?.latitude.description
+                self.longitudeTextField.text = coordinates?.longitude.description
+            }
+            self.geoLocationButton.isHidden = false
+            self.geoLocationActivityIndicator.stopAnimating()
+        }
     }
     
     func createContact() -> Contact {
-        return Contact(name: nameTextField.text!, andTelephone: telephoneTextField.text!, andAddress: addressTextField.text!, andSite: siteTextField.text!, andPhoto: photoImageView.image!)
+        var decimalLatitude = NSDecimalNumber()
+        if let latitude = latitudeTextField.text {
+            if (!latitude.isEmpty) {
+                decimalLatitude = NSDecimalNumber(value: Double(latitude)!)
+            }
+        }
+        
+        var decimalLongitude = NSDecimalNumber()
+        if let longitude = longitudeTextField.text {
+            if (!longitude.isEmpty) {
+                decimalLongitude = NSDecimalNumber(value: Double(longitude)!)
+            }
+        }
+        
+        return Contact(name: nameTextField.text!, andTelephone: telephoneTextField.text!, andAddress: addressTextField.text!, andSite: siteTextField.text!, andPhoto: photoImageView.image!, andLatitude: decimalLatitude, andLongitude: decimalLongitude)
     }
     
     func saveContact(contact: Contact) {
@@ -128,6 +169,14 @@ class ContactFormViewController: UIViewController, UIImagePickerControllerDelega
         contact!.address = addressTextField.text!
         contact!.site = siteTextField.text!
         contact!.photo = photoImageView.image!
+        
+        if let latitude = latitudeTextField.text {
+            contact!.latitude = NSDecimalNumber(value: Double(latitude)!)
+        }
+        if let longitude = longitudeTextField.text {
+            contact!.longitude = NSDecimalNumber(value: Double(longitude)!)
+        }
+        
         delegate?.setAsUpdated(contact: contact!)
     }
     
@@ -137,5 +186,12 @@ class ContactFormViewController: UIViewController, UIImagePickerControllerDelega
         photoImageView.image = image
         photoImageView.backgroundColor = UIColor.clear
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func formatNumber(number: NSNumber) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 6
+        return formatter.string(from: number)!
     }
 }

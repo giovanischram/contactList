@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1010" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tpx-PI-LnM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1010" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2DS-bH-egL">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -38,6 +38,7 @@
                                 <connections>
                                     <outlet property="nameLabel" destination="fEh-7F-XOA" id="Y0x-w0-h8J"/>
                                     <outlet property="photoImageView" destination="CK3-jg-Gx1" id="A88-bI-h1l"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="editSegue" id="VhI-Jx-35e"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -50,7 +51,7 @@
                     <navigationItem key="navigationItem" title="Contatos" id="UcB-Cd-E0D">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="9hr-Co-wl8">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" identifier="addSegue" id="64h-yU-FVf"/>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="" id="64h-yU-FVf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -60,10 +61,11 @@
             </objects>
             <point key="canvasLocation" x="172.5" y="191.19718309859155"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Contatos-->
         <scene sceneID="iIt-Ho-EhK">
             <objects>
                 <navigationController id="tpx-PI-LnM" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Contatos" image="lista-contatos" id="4ij-UI-TUW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oPa-zv-j8E">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -76,20 +78,66 @@
             </objects>
             <point key="canvasLocation" x="-767" y="193"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="6kB-Ij-63e">
+            <objects>
+                <tabBarController id="2DS-bH-egL" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="JuT-Jd-W1E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="tpx-PI-LnM" kind="relationship" relationship="viewControllers" id="1H3-5V-TUf"/>
+                        <segue destination="6RV-LH-9VT" kind="relationship" relationship="viewControllers" id="lJS-yi-lnR"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ett-2h-g6E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2243" y="610"/>
+        </scene>
+        <!--Mapa-->
+        <scene sceneID="Gv3-uT-Z37">
+            <objects>
+                <viewController id="2Hb-QM-0dQ" customClass="MapViewController" customModule="ContatosIP67" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IM9-Gx-HVU"/>
+                        <viewControllerLayoutGuide type="bottom" id="zHE-wo-rd0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="H8q-2d-rry">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="s0V-zK-fA3">
+                                <frame key="frameInset" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Mapa" id="DWh-wY-D8X"/>
+                    <connections>
+                        <outlet property="mapKitView" destination="s0V-zK-fA3" id="O3Q-Se-Hag"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AJE-kD-xKd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="256.875" y="964.43661971830988"/>
+        </scene>
         <!--Contato-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="contactForm" id="BYZ-38-t0r" customClass="ContactFormViewController" customModule="ContatosIP67" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="contactForm" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ContactFormViewController" customModule="ContatosIP67" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="TPKeyboardAvoidingScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pjb-Ux-atT">
-                                <frame key="frameInset" minY="66" width="320" height="156"/>
+                                <frame key="frameInset" minY="64" width="320" height="156"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h9I-gB-QKT">
@@ -100,33 +148,59 @@
                                 </subviews>
                             </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Telefone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mtl-Fo-w9z">
-                                <frame key="frameInset" minX="13" minY="269" width="291" height="30"/>
+                                <frame key="frameInset" minX="13" minY="267" width="291" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Endereço" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zba-Gd-315">
-                                <frame key="frameInset" minX="13" minY="318" width="291" height="30"/>
+                                <frame key="frameInset" minX="13" minY="365" width="291" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nome" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xWa-Rt-0Gj">
-                                <frame key="frameInset" minX="13" minY="222" width="291" height="30"/>
+                                <frame key="frameInset" minX="13" minY="220" width="291" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Latitude" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AbV-e6-NWA">
+                                <frame key="frameInset" minX="61" minY="416" width="118" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Site" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XfM-mz-6Iz">
-                                <frame key="frameInset" minX="13" minY="367" width="291" height="30"/>
+                                <frame key="frameInset" minX="13" minY="318" width="291" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgy-an-cFT">
+                                <frame key="frameInset" minX="13" minY="416" width="42" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="gps"/>
+                                <connections>
+                                    <action selector="getGeolocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pYd-i2-QTR"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Logintude" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xgz-k1-DVj">
+                                <frame key="frameInset" minX="186" minY="416" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="suR-oI-WiX">
+                                <frame key="frameInset" minX="24" minY="419" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -139,6 +213,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addressTextField" destination="zba-Gd-315" id="uiu-bV-pnQ"/>
+                        <outlet property="geoLocationActivityIndicator" destination="suR-oI-WiX" id="ZJG-bj-MQY"/>
+                        <outlet property="geoLocationButton" destination="bgy-an-cFT" id="zLX-Fi-crT"/>
+                        <outlet property="latitudeTextField" destination="AbV-e6-NWA" id="mTV-Sg-HAu"/>
+                        <outlet property="longitudeTextField" destination="Xgz-k1-DVj" id="eGa-it-oCn"/>
                         <outlet property="nameTextField" destination="xWa-Rt-0Gj" id="Gzs-1r-oBA"/>
                         <outlet property="photoImageView" destination="h9I-gB-QKT" id="o29-ld-enE"/>
                         <outlet property="siteTextField" destination="XfM-mz-6Iz" id="5cc-ee-pQ5"/>
@@ -149,5 +227,32 @@
             </objects>
             <point key="canvasLocation" x="1117.5" y="192.25352112676057"/>
         </scene>
+        <!--Mapa-->
+        <scene sceneID="5ke-NU-fbO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6RV-LH-9VT" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Mapa" image="mapa-contatos" id="wR0-Km-EVr"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7j4-8J-FHv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2Hb-QM-0dQ" kind="relationship" relationship="rootViewController" id="2x2-U1-6Ox"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="egO-xs-Wei" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-740.625" y="964.43661971830988"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="gps" width="30" height="30"/>
+        <image name="lista-contatos" width="30" height="30"/>
+        <image name="mapa-contatos" width="30" height="30"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="64h-yU-FVf"/>
+    </inferredMetricsTieBreakers>
 </document>

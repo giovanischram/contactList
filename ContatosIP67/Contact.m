@@ -19,7 +19,9 @@ NSString *site;
            andTelephone: (NSString*) telephone
              andAddress: (NSString*) address
                 andSite: (NSString*) site
-               andPhoto: (UIImage*) photo {
+               andPhoto: (UIImage*) photo
+            andLatitude: (NSNumber*) latitude
+           andLongitude: (NSNumber*) longitude {
     
     Contact *contact = [Contact new];
     contact.name = name;
@@ -27,11 +29,17 @@ NSString *site;
     contact.address = address;
     contact.site = site;
     contact.photo = photo;
+    contact.latitude = latitude;
+    contact.longitude = longitude;
     return contact;
 }
 
 -(NSString *) description {
     return [NSString stringWithFormat:@"Nome: %@, Telefone: %@, Endereço: %@, Site: %@", self.name, self.telephone, self.address, self.site];
+}
+
+-(CLLocationCoordinate2D) coordinate {
+    return CLLocationCoordinate2DMake([self.latitude doubleValue], [self.longitude doubleValue]);
 }
 
 @end

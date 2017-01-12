@@ -16,7 +16,7 @@ class ContactTableViewController: UITableViewController, ContactTableViewControl
     
     private static let MAIN_STORYBOARD: String = "Main"
     private static let FORM_IDENTIFIER: String = "contactForm"
-    private static let CONTACT_LIST_IDENTIFIER: String = "addSegue"
+    private static let EDIT_SEGUE_IDENTIFIER: String = "editSegue"
     
     var contactDao: ContactDao!
     var selectedRow: IndexPath?
@@ -29,7 +29,6 @@ class ContactTableViewController: UITableViewController, ContactTableViewControl
     override func viewDidLoad() {
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(showOptions(gesture:)))
         self.tableView.addGestureRecognizer(gesture)
-        
     }
     
     func showOptions(gesture: UIGestureRecognizer) {
@@ -59,9 +58,9 @@ class ContactTableViewController: UITableViewController, ContactTableViewControl
         cell?.nameLabel.text = contact.name
         
         if (contact.photo == nil) {
-            let url = URL(string: "http://store.mdcgate.com/market/assets/image/icon_user_default.png")
-            let data:Data = try! Data(contentsOf: url!)
-            cell?.photoImageView.image = UIImage(data: data)
+//            let url = URL(string: "http://store.mdcgate.com/market/assets/image/icon_user_default.png")
+//            let data:Data = try! Data(contentsOf: url!)
+//            cell?.photoImageView.image = UIImage(data: data)
         } else {
             cell?.photoImageView.image = contact.photo
         }
@@ -76,7 +75,7 @@ class ContactTableViewController: UITableViewController, ContactTableViewControl
             self.tableView.selectRow(at: selectedRow, animated: true, scrollPosition: .middle)
             
             // Voltar o backgroung padrao da linha depois de X segundos assincronamente
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                 self.tableView.deselectRow(at: self.selectedRow!, animated: true)
             })
         }
@@ -89,21 +88,28 @@ class ContactTableViewController: UITableViewController, ContactTableViewControl
         }
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let contact = contactDao.findByIndex(index: indexPath.row)
-        let sotryBoard = UIStoryboard(name: ContactTableViewController.MAIN_STORYBOARD, bundle: nil)
-        let form =  sotryBoard.instantiateViewController(withIdentifier: ContactTableViewController.FORM_IDENTIFIER) as! ContactFormViewController
-        form.setContact(contact: contact)
-        form.setDelegate(delegate: self)
-        self.navigationController?.pushViewController(form, animated: true)
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let contact = contactDao.findByIndex(index: indexPath.row)
+//        let sotryBoard = UIStoryboard(name: ContactTableViewController.MAIN_STORYBOARD, bundle: nil)
+//        let form =  sotryBoard.instantiateViewController(withIdentifier: ContactTableViewController.FORM_IDENTIFIER) as! ContactFormViewController
+//        form.setContact(contact: contact)
+//        form.setDelegate(delegate: self)
+//        self.navigationController?.pushViewController(form, animated: true)
+//    }
     
     // Define o delegate quando vier do botão Adicionar
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == ContactTableViewController.CONTACT_LIST_IDENTIFIER) {
-            let form =  segue.destination as! ContactFormViewController
-            form.setDelegate(delegate: self)
+        let form =  segue.destination as! ContactFormViewController
+        form.setDelegate(delegate: self)
+        
+        if (segue.identifier == ContactTableViewController.EDIT_SEGUE_IDENTIFIER) {
+            let indexPath = self.tableView.indexPathForSelectedRow
+            let contact = contactDao.findByIndex(index: (indexPath?.row)!)
+            form.setContact(contact: contact)
         }
+        
+        // Para nao pintar a linha quando apenas voltar do formulario
+        selectedRow = nil
     }
     
     func setAsUpdated(contact: Contact) {
