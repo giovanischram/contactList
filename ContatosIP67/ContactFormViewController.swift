@@ -51,7 +51,8 @@ class ContactFormViewController: UIViewController, UIImagePickerControllerDelega
             siteTextField.text = contact!.site
             photoImageView.image = contact!.photo
             
-            
+            print("Latitude: \(contact!.latitude)")
+            print("Longitude: \(contact!.longitude)")
             if let latitude = contact!.latitude {
                 latitudeTextField.text = formatNumber(number: latitude)
             }
@@ -59,12 +60,8 @@ class ContactFormViewController: UIViewController, UIImagePickerControllerDelega
             if let longitude = contact!.longitude {
                 longitudeTextField.text = formatNumber(number: longitude)
             }
-            
-            
         } else {
-            let url = URL(string: "http://store.mdcgate.com/market/assets/image/icon_user_default.png")
-            let data:Data = try! Data(contentsOf: url!)
-            photoImageView.image = UIImage(data: data)
+            photoImageView.image = #imageLiteral(resourceName: "lista-contatos")
         }
         
         self.photoImageView.layer.cornerRadius = 60.0
@@ -113,8 +110,8 @@ class ContactFormViewController: UIViewController, UIImagePickerControllerDelega
     }
 
     @IBAction func addContact() {
-        let contact = createContact()
         if (isNewContact) {
+            let contact = createContact()
             saveContact(contact: contact)
         } else {
             editContact()
@@ -132,6 +129,8 @@ class ContactFormViewController: UIViewController, UIImagePickerControllerDelega
             if (error == nil && result!.count > 0) {
                 let placeMark = result?[0]
                 let coordinates = placeMark?.location?.coordinate
+                print("Latitude: \(coordinates?.latitude.description)")
+                print("Longitude: \(coordinates?.longitude.description)")
                 self.latitudeTextField.text = coordinates?.latitude.description
                 self.longitudeTextField.text = coordinates?.longitude.description
             }
@@ -155,7 +154,16 @@ class ContactFormViewController: UIViewController, UIImagePickerControllerDelega
             }
         }
         
-        return Contact(name: nameTextField.text!, andTelephone: telephoneTextField.text!, andAddress: addressTextField.text!, andSite: siteTextField.text!, andPhoto: photoImageView.image!, andLatitude: decimalLatitude, andLongitude: decimalLongitude)
+        let contact = contactDao.newContact();
+        contact.name = nameTextField.text!
+        contact.telephone = telephoneTextField.text!
+        contact.address = addressTextField.text!
+        contact.site = siteTextField.text!
+        contact.photo = photoImageView.image!
+        contact.latitude = decimalLatitude
+        contact.longitude = decimalLongitude
+        
+        return contact
     }
     
     func saveContact(contact: Contact) {
@@ -177,6 +185,7 @@ class ContactFormViewController: UIViewController, UIImagePickerControllerDelega
             contact!.longitude = NSDecimalNumber(value: Double(longitude)!)
         }
         
+        contactDao.update(contact: contact!)
         delegate?.setAsUpdated(contact: contact!)
     }
     

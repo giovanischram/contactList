@@ -9,11 +9,15 @@
 #import "Contact.h"
 
 @implementation Contact
+@dynamic name, telephone, address, site, photo, latitude, longitude;
 
 NSString *name;
 NSString *telephone;
 NSString *address;
 NSString *site;
+UIImage *photo;
+NSNumber *latitude;
+NSNumber *longitude;
 
 -(instancetype) initWithName: (NSString*) name
            andTelephone: (NSString*) telephone
@@ -40,6 +44,14 @@ NSString *site;
 
 -(CLLocationCoordinate2D) coordinate {
     return CLLocationCoordinate2DMake([self.latitude doubleValue], [self.longitude doubleValue]);
+}
+
+-(NSString *) title {
+    return self.name;
+}
+
+-(NSString *) subtitle {
+    return self.address;
 }
 
 @end

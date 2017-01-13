@@ -39,11 +39,17 @@ class OptionsManagement: NSObject {
             self.openURL(url: "http://\(self.contact.site)")
         }
         
+        let weatherAction = UIAlertAction(title: "Ver clima", style: .default) { (UIAlertAction) in
+            let weatherViewController = self.controller.storyboard?.instantiateViewController(withIdentifier: "weather")
+            self.controller.navigationController?.pushViewController(weatherViewController!, animated: true)
+        }
+        
         let alert = UIAlertController(title: contact.name, message: nil, preferredStyle: .actionSheet)
         alert.addAction(cancelAction)
         alert.addAction(callAction)
         alert.addAction(mapAction)
         alert.addAction(siteAction)
+        alert.addAction(weatherAction)
         
         controller.present(alert, animated: true, completion: nil)
     }

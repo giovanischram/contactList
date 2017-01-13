@@ -57,11 +57,7 @@ class ContactTableViewController: UITableViewController, ContactTableViewControl
         let cell:ContactTableViewCell? = tableView.dequeueReusableCell(withIdentifier: ContactTableViewController.CELL_IDENTIFIER) as! ContactTableViewCell?
         cell?.nameLabel.text = contact.name
         
-        if (contact.photo == nil) {
-//            let url = URL(string: "http://store.mdcgate.com/market/assets/image/icon_user_default.png")
-//            let data:Data = try! Data(contentsOf: url!)
-//            cell?.photoImageView.image = UIImage(data: data)
-        } else {
+        if (contact.photo != nil) {
             cell?.photoImageView.image = contact.photo
         }
         
